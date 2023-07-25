@@ -97,10 +97,10 @@ int main()
     // shader configuration
     shader.use();
     shader.setFloat("material.shininess", 64.0f);
-    shader.setVec3("dirLight.direction", 0.0f, -0.2f, 1.0f);
+    shader.setVec3("dirLight.direction", 1.0f, -0.2f, 1.0f);
     shader.setVec3("dirLight.ambient", 0.3f, 0.3f, 0.3f);
     shader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-    shader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+    shader.setVec3("dirLight.specular", 0.0f, 0.0f, 0.0f);
 
     while (!glfwWindowShouldClose(window))
     {

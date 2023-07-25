@@ -16,12 +16,12 @@ void main()
 {
     vec3 pos = aPos;
     pos.y += sin(pos.x + time);
-    /*vec3 tangent = vec3(1.0, 0, cos(pos.x + time)); // tangent on x axis
-    vec3 binormal = vec3(0.0, 1.0, 0.0); // tangent on z axis*/
-    //vec3 norm = cross(tangent, binormal);
+    vec3 tangent = vec3(1.0, cos(pos.x + time), 0.0); // tangent on x axis
+    vec3 binormal = vec3(0.0, 0.0, 1.0); // tangent on z axis
+    vec3 norm = cross(tangent, binormal);
     gl_Position = proj * view * model * vec4(pos, 1.0);
     FragPos = vec3(model * vec4(pos, 1.0));
-    Normal = mat3(transpose(inverse(model))) * aNormal;
+    Normal = cross(tangent, binormal); //mat3(transpose(inverse(model))) * aNormal;
     TexCoords = aTexCoords;
     
 }

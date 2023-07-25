@@ -39,7 +39,6 @@ void main()
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 {
-    normal = vec3(0.0, 1.0, 0.0); // TODO this will later come from wave function calculations
     vec3 lightDir = normalize(-light.direction);
     // diffuse lighting
     float diff = max(dot(normal, lightDir), 0.0);
