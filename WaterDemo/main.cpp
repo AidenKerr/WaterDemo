@@ -18,7 +18,7 @@ const unsigned int SCR_WIDTH = 1600;
 const unsigned int SCR_HEIGHT = 1200;
 
 // set up camera
-Camera camera(glm::vec3(0.0f, 0.5f, 10.0f));
+Camera camera(glm::vec3(-3.0f, 2.0f, 10.0f));
 float lastX = SCR_WIDTH / 2, lastY = SCR_HEIGHT / 2;
 bool firstMouse = true;
 
@@ -97,10 +97,10 @@ int main()
     // shader configuration
     shader.use();
     shader.setFloat("material.shininess", 64.0f);
-    shader.setVec3("dirLight.direction", 1.0f, -0.2f, 1.0f);
+    shader.setVec3("dirLight.direction", 0.7f, -0.2f, 1.0f);
     shader.setVec3("dirLight.ambient", 0.3f, 0.3f, 0.3f);
     shader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-    shader.setVec3("dirLight.specular", 0.0f, 0.0f, 0.0f);
+    shader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
     while (!glfwWindowShouldClose(window))
     {

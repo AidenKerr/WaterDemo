@@ -12,9 +12,8 @@ struct DirLight
     vec3 specular;
 };
 
-in vec3 Normal;
 in vec3 FragPos;
-in vec2 TexCoords;
+in vec3 Normal;
 
 uniform Material material;
 uniform DirLight dirLight;
