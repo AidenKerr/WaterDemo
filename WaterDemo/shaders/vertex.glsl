@@ -19,15 +19,25 @@ out vec3 Normal;
 float wave(vec3 pos, Wave wave);
 float waveDerivative(vec3 pos, Wave wave);
 
+Wave waves[] = Wave[](Wave(normalize(vec3(1.0, 0.0, 0.3)), 1.0, 1.0),
+                      Wave(normalize(vec3(0.3, 0.0, -0.9)), 0.8, 2.0),
+                      Wave(normalize(vec3(-0.9, 0.0, 0.2)), 0.5, 3.0),
+                      Wave(normalize(vec3(-0.5, 0.0, -0.8)), 0.2, 4.0));
+const int wavesCount = waves.length();
+
 void main()
 {
-    Wave wave = Wave(vec3(1.0, 0.0, 0.3), 1.0, 0.0);
-
     vec3 pos = aPos;
-    pos.y += wave(pos, wave);
-    vec3 tangent = vec3(1.0, wave.dir.x * waveDerivative(pos, wave), 0.0); // tangent on x axis
-    vec3 binormal = vec3(0.0, wave.dir.z * waveDerivative(pos, wave), 1.0); // tangent on z axis
-    Normal = cross(binormal, tangent); // right hand rule, z cross x, z is towards camera
+
+    Normal = vec3(0.0);
+    for (int i = 0; i < wavesCount; i++)
+    {
+        Wave w = waves[i];
+        pos.y += wave(pos, w);
+        vec3 tangent = vec3(1.0, w.dir.x * waveDerivative(pos, w), 0.0); // tangent on x axis
+        vec3 binormal = vec3(0.0, w.dir.z * waveDerivative(pos, w), 1.0); // tangent on z axis
+        Normal += cross(binormal, tangent); // right hand rule, z cross x, z is towards camera
+    }
     gl_Position = proj * view * model * vec4(pos, 1.0);
     FragPos = vec3(model * vec4(pos, 1.0));
 }
