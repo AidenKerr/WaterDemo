@@ -56,10 +56,10 @@ float sinWaveDerivative(vec3 pos, Wave w)
 
 float wave(vec3 pos, Wave w)
 {
-    return w.amp * exp(sin(dot(w.dir, pos) + time * w.speed));
+    return w.amp * exp(sin(dot(w.dir, pos) + time * w.speed) - 1);
 }
 
 float waveDerivative(vec3 pos, Wave w)
 {
-    return w.amp * exp(sin(dot(w.dir, pos) + time * w.speed)) * cos(dot(w.dir, pos) + time * w.speed);
+    return w.amp * exp(sin(dot(w.dir, pos) + time * w.speed)-1) * cos(dot(w.dir, pos) + time * w.speed);
 }
